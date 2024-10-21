@@ -1,0 +1,27 @@
+.note-div {
+    background-color: rgb(160, 160, 160);
+    border-radius: 8px;
+    padding: 8px;
+    color: white;
+    min-width: 200px;
+    min-height: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.remove-btn {
+    background: none;
+    font-size: 20px;
+    border: none;
+    color: red;
+    cursor: pointer;
+}
+
+h4 {
+    cursor: pointer;
+}
