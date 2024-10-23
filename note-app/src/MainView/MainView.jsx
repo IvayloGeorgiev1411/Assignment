@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import './MainView.css';
 import { createNote, getAllNotes } from "../services/services";
@@ -25,14 +26,14 @@ export const MainView = () => {
         }
         try {
             const response = await createNote(note);
-            setNote({title: '', content: ''});
+            setNote({ title: '', content: '' });
             await handleGetNotes();
         } catch (error) {
             console.log(error.message);
         }
     }
 
-    
+
     useEffect(() => {
         handleGetNotes();
     }, [])
@@ -48,32 +49,38 @@ export const MainView = () => {
             <h1>Note Taker</h1>
 
             <div id="input-area">
-                <label htmlFor="title"></label>
-                <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    value={note.title}
-                    onChange={(e) => setNote({ ...note, title: e.target.value })} />
+                <div className="single-input">
+                    <label htmlFor="title">Title</label>
+                    <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        placeholder="Title..."
+                        value={note.title}
+                        onChange={(e) => setNote({ ...note, title: e.target.value })} />
+                </div>
 
-                <label htmlFor="content"></label>
-                <textarea
-                    id="content"
-                    name="content"
-                    value={note.content}
-                    onChange={(e) => setNote({ ...note, content: e.target.value })}
-                />
+                <div className="single-input">
+                    <label htmlFor="content">Content</label>
+                    <textarea
+                        id="content"
+                        name="content"
+                        placeholder="Write a note..."
+                        value={note.content}
+                        onChange={(e) => setNote({ ...note, content: e.target.value })}
+                    />
+                </div>
                 <button id="create-btn" onClick={handleCreate}>Create</button>
             </div>
 
             <div id="notes-area">
                 {allNotes.length > 0 && allNotes.map(note => {
-                    return <Note 
-                    key={note.id} 
-                    id={note.id} 
-                    title={note.title} 
-                    content={note.content}
-                    handleGetNotes={handleGetNotes} />
+                    return <Note
+                        key={note.id}
+                        id={note.id}
+                        title={note.title}
+                        content={note.content}
+                        handleGetNotes={handleGetNotes} />
                 })}
             </div>
 

@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import { removeNote } from '../services/services'
 import './Note.css'
 import { EditModal } from '../EditModal/EditModal';
+import PropTypes from 'prop-types';
 
 
 export const Note = ({ id, title, content, handleGetNotes }) => {
@@ -25,7 +27,7 @@ export const Note = ({ id, title, content, handleGetNotes }) => {
             <div className="note-div">
                 <div className='top-section'>
                     <h4 onClick={toggleModal}>{title}</h4>
-                    <button className='remove-btn' onClick={handleRemove}>X</button>
+                    <span className="close" onClick={handleRemove}>&times;</span>
                 </div>
 
                 <p>{content}</p>
@@ -43,3 +45,10 @@ export const Note = ({ id, title, content, handleGetNotes }) => {
         </>
     )
 }
+
+Note.propTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    handleGetNotes: PropTypes.func.isRequired,
+};

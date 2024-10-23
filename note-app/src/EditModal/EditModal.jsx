@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { editNote } from '../services/services';
 import './EditModal.css'
 import { useState } from 'react'
+import PropTypes from 'prop-types';
 
 export const EditModal = ({ id, title, content, toggleModal, getNotes }) => {
 
@@ -24,16 +26,16 @@ export const EditModal = ({ id, title, content, toggleModal, getNotes }) => {
                     <span className="close" onClick={toggleModal}>&times;</span>
                 </div>
 
-                <form>
-                    <div>
+                <div id='edit-section'>
+                    <div className='new-input'>
                         <label>Title</label>
                         <input
                             type="text"
-                            id='newTitle'
+                            id="newTitle"
                             value={newNote.title}
                             onChange={(e) => setNewNote({ ...newNote, title: e.target.value })} />
                     </div>
-                    <div>
+                    <div className='new-input'>
                         <label>Content</label>
                         <textarea
                             id='newContent'
@@ -41,8 +43,16 @@ export const EditModal = ({ id, title, content, toggleModal, getNotes }) => {
                             onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}></textarea>
                     </div>
                     <button className='edit-btn' onClick={handleEditModal}>Save</button>
-                </form>
+                </div>
             </div>
         </div>
     )
 }
+
+EditModal.propTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    toggleModal: PropTypes.func.isRequired,
+    getNotes: PropTypes.func.isRequired,
+};
